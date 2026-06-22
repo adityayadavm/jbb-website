@@ -593,8 +593,8 @@ export default function HomePage() {
             <Button as="link" href="/contact" variant="primary" icon size="lg">
               Schedule a Consultation
             </Button>
-            <Button as="link" href="tel:+911244224886" variant="outline-navy" size="lg">
-              Call: 0124-4224886
+            <Button as="link" href="tel:01244478129" variant="outline-navy" size="lg">
+              Call: 0124-4478129
             </Button>
           </div>
         </div>

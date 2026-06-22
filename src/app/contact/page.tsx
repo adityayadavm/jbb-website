@@ -35,15 +35,15 @@ const officeDetails = [
   {
     icon: Phone,
     label: "Phone",
-    lines: ["0124-4224886", "+91 96542 31250"],
-    link: "tel:+911244224886",
+    lines: ["0124-4478129", "+91 96542 31250"],
+    link: "tel:01244478129",
     linkLabel: "Call Now →",
   },
   {
     icon: Mail,
     label: "Email",
-    lines: ["compliance@jbbadvisors.com"],
-    link: "mailto:compliance@jbbadvisors.com",
+    lines: ["info@jbbadvisors.com"],
+    link: "mailto:info@jbbadvisors.com",
     linkLabel: "Send Email →",
   },
   {
@@ -360,7 +360,7 @@ export default function ContactPage() {
           <p className="text-center text-[var(--color-grey-400)] text-xs mt-8">
             Still have questions?{" "}
             <a
-              href="mailto:compliance@jbbadvisors.com"
+              href="mailto:info@jbbadvisors.com"
               className="text-[var(--color-gold-600)] font-semibold hover:underline"
             >
               Email us directly

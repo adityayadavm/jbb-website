@@ -18,7 +18,7 @@ interface ContactLead {
 
 /* ─── Constants ──────────────────────────────────────────────── */
 const LEADS_FILE = path.join(process.cwd(), "data", "contact_leads.json");
-const NOTIFY_TO = process.env.NOTIFY_TO ?? "compliance@jbbadvisors.com";
+const NOTIFY_TO = process.env.NOTIFY_TO ?? "info@jbbadvisors.com";
 const SMTP_FROM = `"${process.env.SMTP_FROM_NAME ?? "JBB Website"}" <${process.env.SMTP_USER ?? "noreply@jbbadvisors.com"}>`;
 
 /* ─── Validation helpers ─────────────────────────────────────── */
