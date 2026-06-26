@@ -376,25 +376,51 @@ export async function POST(req: NextRequest) {
       recipientEnv: process.env.CONTACT_TO_EMAIL ?? process.env.NOTIFY_TO ?? "(fallback)",
       stack:        e?.stack,
     });
-    // Return a user-friendly error without exposing SMTP internals to the browser
+    // Return a user-friendly error — never expose SMTP internals to the browser
     return NextResponse.json(
       {
         success: false,
         error:
-          "We could not process your submission at this time. " +
-          "Please try again or contact us directly at info@jbbadvisors.com.",
+          "Submission failed. Please try again or contact us directly at info@jbbadvisors.com.",
       },
       { status: 500 }
     );
   }
 
-  // ── 5. Success ─────────────────────────────────────────────────────────────
+  // ── 5. Optional: save lead to local JSON file in dev only ─────────────────
+  //
+  //  ⚠️  This block ONLY runs in local development (NODE_ENV !== "production").
+  //  Vercel sets NODE_ENV="production" automatically, so this is NEVER executed
+  //  in production — it will never cause a filesystem error on Vercel.
+  //
+  if (process.env.NODE_ENV !== "production") {
+    try {
+      const { promises: fs } = await import("fs");
+      const path = await import("path");
+      const leadsFile = path.join(process.cwd(), "data", "contact_leads.json");
+      let leads: ContactLead[] = [];
+      try {
+        const raw = await fs.readFile(leadsFile, "utf-8");
+        leads = JSON.parse(raw);
+      } catch {
+        leads = [];
+      }
+      leads.push(lead);
+      await fs.mkdir(path.dirname(leadsFile), { recursive: true });
+      await fs.writeFile(leadsFile, JSON.stringify(leads, null, 2), "utf-8");
+      console.info(`[contact/api] 💾 [DEV] Lead ${lead.id} saved to data/contact_leads.json`);
+    } catch (fsErr) {
+      // Non-fatal in dev — log and continue
+      console.warn("[contact/api] ⚠️  [DEV] Could not save lead to JSON file:", fsErr);
+    }
+  }
+
+  // ── 6. Success ─────────────────────────────────────────────────────────────
   console.info(`[contact/api] ✅ Lead ${lead.id} processed successfully.`);
   return NextResponse.json(
     {
       success: true,
-      message:
-        "Thank you. Your consultation request has been submitted successfully.",
+      message: "Thank you. Your enquiry has been submitted successfully.",
       leadId: lead.id,
     },
     { status: 200 }

@@ -210,7 +210,7 @@ export default function ContactForm() {
       const msg =
         err instanceof Error && err.message
           ? err.message
-          : "Something went wrong. Please try again or contact us at info@jbbadvisors.com.";
+          : "Submission failed. Please try again or contact us directly at info@jbbadvisors.com.";
       setErrorMsg(msg);
       setStatus("error");
       console.error("[ContactForm] Submission error:", err);
