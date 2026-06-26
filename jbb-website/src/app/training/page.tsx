@@ -436,7 +436,7 @@ export default function TrainingPage() {
                 <p className="text-[9px] font-bold uppercase tracking-widest mb-3" style={{ color: "var(--color-grey-500)" }}>Get in Touch</p>
                 <div className="space-y-2 text-xs" style={{ color: "var(--color-grey-600)" }}>
                   <p>📞 <a href="tel:+919654231250" className="hover:text-[var(--color-gold-700)] transition-colors">+91 96542 31250</a></p>
-                  <p>✉️ <a href="mailto:compliance@jbbadvisors.com" className="hover:text-[var(--color-gold-700)] transition-colors">compliance@jbbadvisors.com</a></p>
+                  <p>✉️ <a href="mailto:info@jbbadvisors.com" className="hover:text-[var(--color-gold-700)] transition-colors">info@jbbadvisors.com</a></p>
                   <p>🕐 Mon – Sat, 10:00 AM – 7:00 PM</p>
                 </div>
               </div>

@@ -70,18 +70,18 @@ export default function Navbar() {
       <div className="hidden lg:block bg-[var(--color-navy-950)] text-white text-xs">
         <div className="container-jbb flex justify-end items-center gap-6 py-2">
           <a
-            href="mailto:compliance@jbbadvisors.com"
+            href="mailto:info@jbbadvisors.com"
             className="flex items-center gap-1.5 hover:text-[var(--color-gold-400)] transition-colors duration-200"
           >
             <Mail size={12} />
-            compliance@jbbadvisors.com
+            info@jbbadvisors.com
           </a>
           <a
-            href="tel:+911244224886"
+            href="tel:01244478129"
             className="flex items-center gap-1.5 hover:text-[var(--color-gold-400)] transition-colors duration-200"
           >
             <Phone size={12} />
-            0124-4224886
+            0124-4478129
           </a>
         </div>
       </div>
@@ -192,16 +192,16 @@ export default function Navbar() {
             {/* Contact strip */}
             <div className="flex flex-col gap-1 mb-4 py-3 border-b border-[var(--color-grey-100)]">
               <a
-                href="mailto:compliance@jbbadvisors.com"
+                href="mailto:info@jbbadvisors.com"
                 className="flex items-center gap-2 text-xs text-[var(--color-grey-500)]"
               >
-                <Mail size={12} /> compliance@jbbadvisors.com
+                <Mail size={12} /> info@jbbadvisors.com
               </a>
               <a
-                href="tel:+911244224886"
+                href="tel:01244478129"
                 className="flex items-center gap-2 text-xs text-[var(--color-grey-500)]"
               >
-                <Phone size={12} /> 0124-4224886
+                <Phone size={12} /> 0124-4478129
               </a>
             </div>
 

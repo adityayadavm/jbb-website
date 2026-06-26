@@ -584,8 +584,8 @@ export default function ServicesPage() {
             <Button as="link" href="/contact" variant="primary" icon size="lg">
               Book a Free Consultation
             </Button>
-            <Button as="link" href="tel:+911244224886" variant="outline-navy" size="lg" className="!border-white/30 !text-white hover:!border-[var(--color-gold-500)] hover:!text-[var(--color-gold-400)]">
-              Call: 0124-4224886
+            <Button as="link" href="tel:01244478129" variant="outline-navy" size="lg" className="!border-white/30 !text-white hover:!border-[var(--color-gold-500)] hover:!text-[var(--color-gold-400)]">
+              Call: 0124-4478129
             </Button>
           </div>
 

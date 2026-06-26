@@ -96,11 +96,11 @@ function SuccessView({ onReset }: { onReset: () => void }) {
         className="text-2xl font-semibold mb-3"
         style={{ fontFamily: "var(--font-display)", color: "var(--color-navy-900)" }}
       >
-        Message Received!
+        Request Submitted!
       </h3>
 
       <p className="text-[var(--color-grey-600)] text-sm leading-relaxed max-w-xs mb-2">
-        Thank you for contacting JBB Business Advisors.
+        Thank you. Your consultation request has been submitted successfully.
       </p>
       <p className="text-[var(--color-grey-600)] text-sm leading-relaxed max-w-xs mb-7">
         Our team will contact you within{" "}
@@ -205,10 +205,12 @@ export default function ContactForm() {
       setForm(EMPTY);
       setErrors({});
     } catch (err: unknown) {
+      // Show the server's user-friendly message if available,
+      // otherwise fall back to a generic prompt.
       const msg =
-        err instanceof Error
+        err instanceof Error && err.message
           ? err.message
-          : "Something went wrong. Please try again or call us directly.";
+          : "Something went wrong. Please try again or contact us at info@jbbadvisors.com.";
       setErrorMsg(msg);
       setStatus("error");
       console.error("[ContactForm] Submission error:", err);

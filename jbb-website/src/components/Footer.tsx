@@ -186,10 +186,10 @@ export default function Footer() {
                 />
                 <div className="flex flex-col gap-0.5">
                   <a
-                    href="tel:+911244224886"
+                    href="tel:01244478129"
                     className="text-[var(--color-grey-300)] text-sm hover:text-[var(--color-gold-400)] transition-colors duration-200"
                   >
-                    0124-4224886
+                    0124-4478129
                   </a>
                   <a
                     href="tel:+919654231250"
@@ -205,10 +205,10 @@ export default function Footer() {
                   className="text-[var(--color-gold-500)] flex-shrink-0"
                 />
                 <a
-                  href="mailto:compliance@jbbadvisors.com"
+                  href="mailto:info@jbbadvisors.com"
                   className="text-[var(--color-grey-300)] text-sm hover:text-[var(--color-gold-400)] transition-colors duration-200 break-all"
                 >
-                  compliance@jbbadvisors.com
+                  info@jbbadvisors.com
                 </a>
               </li>
             </ul>

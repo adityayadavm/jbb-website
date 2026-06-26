@@ -140,7 +140,7 @@ function TeamCard({ member }: { member: typeof team[0] }) {
       {/* Social icons */}
       <div className="flex gap-2 mt-auto pt-2 border-t border-[var(--color-grey-100)] w-full justify-center">
         <a
-          href="mailto:compliance@jbbadvisors.com"
+          href="mailto:info@jbbadvisors.com"
           aria-label={`Email ${member.name}`}
           className="w-8 h-8 rounded flex items-center justify-center text-[var(--color-grey-400)] hover:text-[var(--color-gold-600)] hover:bg-[var(--color-gold-100)] transition-all duration-200"
         >
