@@ -1,0 +1,653 @@
+@import "tailwindcss";
+
+/* ─── JBB Brand Design Tokens ───────────────────────────────── */
+@theme inline {
+  /* Colors */
+  --color-navy-950:  #05101f;
+  --color-navy-900:  #0A1628;
+  --color-navy-800:  #102040;
+  --color-navy-700:  #163058;
+  --color-navy-600:  #1e4080;
+  --color-navy-100:  #e8eef8;
+  --color-navy-50:   #f0f4fb;
+
+  --color-gold-600:  #a07d2e;
+  --color-gold-500:  #C9A84C;
+  --color-gold-400:  #d4b86a;
+  --color-gold-300:  #e3cc94;
+  --color-gold-100:  #f7f0df;
+
+  --color-grey-900:  #1a1a2e;
+  --color-grey-700:  #3d3d5c;
+  --color-grey-500:  #6b6b8a;
+  --color-grey-300:  #b8b8cc;
+  --color-grey-100:  #f0f0f5;
+  --color-grey-50:   #f8f8fc;
+
+  --color-white:     #ffffff;
+
+  /* Typography */
+  --font-display:    "Book Antiqua", Palatino, "Palatino Linotype", Georgia, serif;
+  --font-body:       "Book Antiqua", Palatino, "Palatino Linotype", Georgia, serif;
+
+  /* Spacing */
+  --spacing-section: 5rem;
+
+  /* Border Radius */
+  --radius-card: 0.5rem;
+
+  /* Shadows */
+  --shadow-card:   0 4px 24px rgba(10, 22, 40, 0.08);
+  --shadow-navbar: 0 2px 20px rgba(10, 22, 40, 0.12);
+  --shadow-btn:    0 4px 14px rgba(201, 168, 76, 0.35);
+}
+
+/* ─── Base Reset & Global Styles ─────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Book Antiqua", Palatino, "Palatino Linotype", Georgia, serif;
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-navy-900);
+  font-family: "Book Antiqua", Palatino, "Palatino Linotype", Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ─── Ensure form elements & buttons inherit Book Antiqua ─── */
+button, input, select, textarea, optgroup {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ─── Typography Hierarchy ───────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Book Antiqua", Palatino, "Palatino Linotype", Georgia, serif;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 600; }
+h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 600; }
+h4 { font-size: 1.1rem; font-weight: 600; }
+
+p { color: var(--color-grey-700); }
+
+a {
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+/* ─── Utility Classes ────────────────────────────────────────── */
+.container-jbb {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-jbb { padding-inline: 2.5rem; }
+}
+
+@media (min-width: 1280px) {
+  .container-jbb { padding-inline: 3rem; }
+}
+
+/* Section Padding */
+.section-padding {
+  padding-block: var(--spacing-section);
+}
+
+/* Gold Divider */
+.gold-line {
+  width: 3.5rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-gold-500), var(--color-gold-300));
+  border-radius: 2px;
+}
+
+/* ─── Long-form Content Justification ────────────────────────── */
+/*
+ * .prose       — wrapper div: all child <p> elements are justified.
+ * .prose-justify — single <p> utility for standalone paragraphs.
+ *
+ * Applied only to: company story, service overviews, FAQ answers,
+ * article excerpts, and eligibility descriptions.
+ * NEVER applied to: headings, nav, buttons, stats, card labels, hero text.
+ */
+.prose p,
+.prose-justify {
+  text-align: justify;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.8;
+}
+
+/* On very small screens, switch to left-align to avoid excessive gaps */
+@media (max-width: 480px) {
+  .prose p,
+  .prose-justify {
+    text-align: left;
+    hyphens: none;
+  }
+}
+
+/* Gradient Text */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-gold-400) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Button Base ─────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-gold-400) 100%);
+  color: var(--color-navy-900);
+  font-family: "Book Antiqua", Palatino, "Palatino Linotype", Georgia, serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.45);
+  filter: brightness(1.06);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-white);
+  font-family: "Book Antiqua", Palatino, "Palatino Linotype", Georgia, serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border-radius: 2px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn-outline-navy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-navy-900);
+  font-family: "Book Antiqua", Palatino, "Palatino Linotype", Georgia, serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.8rem 2rem;
+  border-radius: 2px;
+  border: 1.5px solid var(--color-navy-900);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-outline-navy:hover {
+  background: var(--color-navy-900);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* ─── Card Styles ─────────────────────────────────────────────── */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(10, 22, 40, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(10, 22, 40, 0.12);
+}
+
+/* Full-height flex card utility */
+.card-flex {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ─── Navbar specific ────────────────────────────────────────── */
+.navbar-link {
+  position: relative;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-navy-900);
+  transition: color 0.25s ease;
+  padding-bottom: 2px;
+}
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-gold-500);
+  transition: width 0.3s ease;
+}
+.navbar-link:hover { color: var(--color-gold-500); }
+.navbar-link:hover::after { width: 100%; }
+.navbar-link.active { color: var(--color-gold-500); }
+.navbar-link.active::after { width: 100%; }
+
+/* Navbar white mode (for scrolled state) */
+.navbar-scrolled {
+  background: var(--color-white) !important;
+  box-shadow: var(--shadow-navbar);
+}
+
+/* ─── WhatsApp Float Button ───────────────────────────────────── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  background: #25D366;
+  color: var(--color-white);
+  border-radius: 50%;
+  width: 3.25rem;
+  height: 3.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.65);
+}
+
+/* ─── LinkedIn Float Button ────────────────────────────────────── */
+.linkedin-float {
+  position: fixed;
+  bottom: 110px;
+  right: 24px;
+  z-index: 999;
+  background: #0A66C2;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 3.25rem;
+  height: 3.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(10, 102, 194, 0.50);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.linkedin-float:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 28px rgba(10, 102, 194, 0.70);
+}
+
+/* ─── Hero Section ────────────────────────────────────────────── */
+.hero-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-navy-950) 0%,
+    var(--color-navy-900) 40%,
+    var(--color-navy-800) 70%,
+    #1a2f5e 100%
+  );
+  position: relative;
+}
+
+/*
+ * Background-image hero variants — each adds a premium photo at low
+ * opacity beneath the navy gradient. Overlays are strong so text
+ * contrast is always excellent on all screen sizes.
+ */
+
+/* Home hero — financial consulting meeting */
+.hero-bg-consulting {
+  background:
+    linear-gradient(105deg,
+      rgba(3, 12, 28, 0.92)   0%,
+      rgba(3, 12, 28, 0.85)  45%,
+      rgba(5, 16, 40, 0.78)  72%,
+      rgba(10, 24, 58, 0.72) 100%
+    ),
+    url('/bg/hero-consulting.jpg') center right / cover no-repeat;
+}
+
+/* Services page — professionals holding SERVICE & EXPERTISE signs */
+.hero-bg-services {
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 25%, rgba(3,12,28,0.55) 100%),
+    linear-gradient(105deg,
+      rgba(3, 12, 28, 0.90)   0%,
+      rgba(3, 12, 28, 0.82)  40%,
+      rgba(5, 16, 40, 0.62)  68%,
+      rgba(10, 24, 58, 0.50) 100%
+    ),
+    url('/bg/services-expertise.jpg') center center / cover no-repeat;
+}
+
+/* Business Formation & Advisory — open business sign */
+.hero-bg-business-formation {
+  background:
+    linear-gradient(
+      rgba(5, 10, 20, 0.70),
+      rgba(5, 10, 20, 0.70)
+    ),
+    url('/bg/business-formation.jpg') center center / cover no-repeat;
+}
+
+/* Services / Tax pages — documents & accounting */
+.hero-bg-tax {
+  background:
+    linear-gradient(105deg,
+      rgba(3, 12, 28, 0.93)   0%,
+      rgba(3, 12, 28, 0.86)  48%,
+      rgba(5, 16, 40, 0.80)  74%,
+      rgba(10, 24, 58, 0.74) 100%
+    ),
+    url('/bg/tax-documents.jpg') center 30% / cover no-repeat;
+}
+
+/* Team / About pages — collaboration meeting */
+.hero-bg-meeting {
+  background:
+    linear-gradient(105deg,
+      rgba(3, 12, 28, 0.92)   0%,
+      rgba(3, 12, 28, 0.84)  44%,
+      rgba(5, 16, 40, 0.78)  72%,
+      rgba(10, 24, 58, 0.70) 100%
+    ),
+    url('/bg/team-meeting.jpg') center / cover no-repeat;
+}
+
+/* Contact / Insights pages — CA advisory office */
+.hero-bg-office {
+  background:
+    linear-gradient(105deg,
+      rgba(3, 12, 28, 0.92)   0%,
+      rgba(3, 12, 28, 0.84)  45%,
+      rgba(5, 16, 40, 0.78)  74%,
+      rgba(10, 24, 58, 0.72) 100%
+    ),
+    url('/bg/office-advisory.jpg') center right / cover no-repeat;
+}
+
+/* Dark CTA / Trust sections — abstract glass office */
+.section-bg-abstract {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(3, 12, 28, 0.90) 0%,
+      rgba(3, 12, 28, 0.86) 100%
+    ),
+    url('/bg/abstract-finance.jpg') center / cover no-repeat fixed;
+}
+
+/* ─── Dark-section text utilities ────────────────────────────── */
+/*
+ * Use these on hero / dark-bg sections for consistent legibility.
+ * They override the body default (navy) and grey-700 paragraph color.
+ */
+
+/* Paragraph / body copy on dark bg */
+.hero-p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* Small badge / chip on dark bg */
+.hero-badge {
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+/* Trust-bar / small label on dark bg */
+.hero-label {
+  color: rgba(255, 255, 255, 0.80);
+}
+
+/* Stat number on dark bg */
+.hero-stat-value {
+  color: #ffffff;
+}
+
+/* Stat sub-label on dark bg */
+.hero-stat-label {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+
+
+/* ─── Animations ─────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease both;
+}
+.animate-fade-in {
+  animation: fadeIn 0.6s ease both;
+}
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* ─── Service Quick Nav (Floating Glass Pill) ────────────────── */
+
+/*
+ * .sqn-root  — transparent sticky wrapper, centering only.
+ * .sqn-track — the constrained glass pill (max-width 1200px, centered).
+ */
+
+.sqn-root {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+  height: 0;           /* ← zero layout height; pill hangs below via translateY */
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: transparent;
+  pointer-events: none;
+  padding: 0;
+}
+
+/* ── The floating glass pill ─────────────────────────────────── */
+.sqn-track {
+  pointer-events: all;
+  /* Drop pill 12 px below the zero-height anchor (into the hero) */
+  transform: translateY(12px);
+  /* Constrained to 92 % of viewport, hard cap at 1200 px */
+  width: 92%;
+  max-width: 1200px;
+  /* Horizontal scroll when items overflow (mobile) */
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;   /* Firefox */
+  /* Pill layout */
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-wrap: nowrap;
+  padding: 5px 8px;
+  /* Apple Liquid Glass */
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.07) inset,
+    0 8px 32px rgba(0, 0, 0, 0.26),
+    0 2px 8px rgba(0, 0, 0, 0.14),
+    0 0 40px rgba(201, 168, 76, 0.06);
+  position: relative;
+}
+
+/* Top-edge specular shimmer */
+.sqn-track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.00) 52%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hide scrollbar in WebKit */
+.sqn-track::-webkit-scrollbar { display: none; }
+
+/* Individual service capsule link */
+.sqn-item {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  padding: 7px 16px;
+  border-radius: 9999px;
+  font-family: "Book Antiqua", Palatino, "Palatino Linotype", Georgia, serif;
+  font-size: 0.785rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.86);
+  background: transparent;
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color         0.22s ease,
+    background    0.22s ease,
+    border-color  0.22s ease,
+    box-shadow    0.22s ease,
+    transform     0.18s ease;
+}
+
+/* Hover — subtle gold glow + slight lift */
+.sqn-item:hover {
+  color: var(--color-gold-400);
+  background: rgba(201, 168, 76, 0.12);
+  border-color: rgba(201, 168, 76, 0.22);
+  box-shadow:
+    0 0 16px rgba(201, 168, 76, 0.16),
+    0 0 0 1px rgba(201, 168, 76, 0.10) inset;
+  transform: translateY(-1px);
+}
+
+/* Active — solid gold capsule */
+.sqn-item--active {
+  color: var(--color-navy-900) !important;
+  background: linear-gradient(
+    135deg,
+    var(--color-gold-500) 0%,
+    var(--color-gold-400) 100%
+  ) !important;
+  border-color: transparent !important;
+  box-shadow:
+    0 0 22px rgba(201, 168, 76, 0.40),
+    0 4px 12px rgba(201, 168, 76, 0.28) !important;
+  font-weight: 600;
+  transform: translateY(-1px);
+}
+
+/* Active pip dot */
+.sqn-pip {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-navy-900);
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+/* Mobile: tighter padding, items slightly smaller */
+@media (max-width: 768px) {
+  .sqn-track {
+    width: 92%;
+    transform: translateY(10px);
+  }
+  .sqn-item {
+    padding: 6px 13px;
+    font-size: 0.75rem;
+  }
+}
+
+
+/* ─── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-grey-50); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-700);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold-500); }
+
+/* ─── Selection ───────────────────────────────────────────────── */
+::selection {
+  background: var(--color-gold-500);
+  color: var(--color-navy-900);
+}
